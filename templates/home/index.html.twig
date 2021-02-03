@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sart examin{% endblock %}
+
+{% block body %}
+<div class="contianer">
+    <h1>Examin blanc</h1>
+    <div class="container">
+    {% if errors %}
+        <p class="text-danger">{{errors}}</p>
+    {% endif %}
+        {% for categorie in categories %}
+            <h2>{{ categorie.name }}</h2>
+            <ul class="row">
+            {% for key, question in questions %}
+                {% if categorie.id == question.categorie.id %}
+                    <li class="mb-4 col-lg-6">
+                        <div>
+                            <div>
+                                <p>
+                                    {{question.text}}
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                        
+                            {% if question.valide == false %}
+                    
+                                <form method="POST" id="{{question.id}}">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Réponse</label>
+                                        <textarea type="text" name="reponse-{{question.id}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter votre reponse"></textarea>
+                                        <small id="emailHelp" class="form-text text-muted">Réponse a la question {{key + 1}}</small>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                <form>
+                            {% else %}
+                                {% for response in question.myResponses %}
+                                <p> 
+                                    {{response}}
+                                </p>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        {% endfor %}
+     
+    </div>
+<div>
+    
+
+{% endblock %}
