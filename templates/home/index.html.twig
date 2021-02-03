@@ -22,18 +22,118 @@
                                 </p>
                             </div>
                         </div>
-                        <div>
+                        <div class="p-3" style="background-color: #000; color: #fff;">
                         
                             {% if question.valide == false %}
-                    
-                                <form method="POST" id="{{question.id}}">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Réponse</label>
-                                        <textarea type="text" name="reponse-{{question.id}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter votre reponse"></textarea>
-                                        <small id="emailHelp" class="form-text text-muted">Réponse a la question {{key + 1}}</small>
+                                {% if key + 1 == 7 %}
+                                    <div>
+                                        <p>
+                                            Voila ma function 
+                                            function multiplication($a, $b){
+                                                return $a*$b;
+                                            }
+                                            $question7 = multiplication(5, 10);
+                                        </p>
+                                        <p>
+                                            La réponse {{question7}}
+                                        </p>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                <form>
+                                {% elseif key + 1 == 12 %}
+                                    <div>
+                                        <p>
+                                            INSERT INTO `stagiaire` (`id`, `created_at`, `name`, `phone`, `birthday`) VALUES (NULL, '2021-02-03', 'Geoffrey', '01.01.01.01.01', '07/11/94');
+                                            INSERT INTO `stagiaire` (`id`, `created_at`, `name`, `phone`, `birthday`) VALUES (NULL, '2021-02-18', 'Louise', '09.09.09.09.09', '07/11/94'), (NULL, '2021-02-24', 'Phillipe', '09.09.09.09.09', '07/11/90');
+                                        </p>
+                                        <p>
+                                            {% for stagiaire in db %}
+                                                {{stagiaire.id}} - {{stagiaire.name}} - {{stagiaire.phone}} - {{stagiaire.created_at}} <br>
+                                            {% endfor %}
+                                        </p>
+                                    </div>
+                                {% elseif key + 1 == 23 %}
+                                    <div>
+                                        namespace MyClass;
+                                        <br>
+                                        Class Stagiaire{
+                                            private $id;
+                                            private $name;
+                                            private $phone;
+                                            private $create_at;
+                                            private $birthday;
+                                            <br>
+                                            public function __construct($id, $name, $phone, $birthday, $create_at)
+                                            {
+                                                $this->id = $id;
+                                                $this->name = $name;
+                                                $this->phone = $phone;
+                                                $this->create_at = $create_at;
+                                                $this->birthday = $birthday;
+                                            }
+                                            <br>
+                                            public function getId(){
+                                                return $this->id;
+                                            }
+                                            <br>
+                                            public function getName(){
+                                                return $this->name;
+                                            }
+                                            <br>
+                                            public function getPhone(){
+                                                return $this->phone;
+                                            }
+                                            <br>
+                                            public function getBirthday(){
+                                                return $this->birthday;
+                                            }
+                                            <br>
+                                            public function getCreateAt(){
+                                                return $this->create_at;
+                                            }
+                                            <br>
+                                            public function setName($name){
+                                                $this->name = $name;
+                                                return $this;
+                                            }
+                                            <br>
+                                            public function setPhone($phone){
+                                                $this->phone = $phone;
+                                                return $this;
+                                            }
+                                            <br>
+                                            public function setBirthday($birthday){
+                                                $this->birthday = $birthday;
+                                                return $this;
+                                            }
+                                            <br>
+                                            public function setCreateAt($create_at){
+                                                $this->create_at = $create_at;
+                                                return $this;
+                                            }
+                                        }
+                                    </div>
+                                    {% elseif key + 1 == 24 %}
+                                        <p>$testStagiaire = new Stagiaire(uniqid(), 'geoffrey', '01.01.01.01.01', '07/11/94', Date('NOW'));</p>
+                                     {{objet.id}} - {{objet.name}} - {{objet.phone}} - {{objet.createat}} - {{objet.birthday}}
+                                    {% elseif key + 1 == 33 %}
+                                        {{form_start(formCompetence)}}
+                                            {{form_widget(formCompetence)}}
+                                            <button>valider</button>
+                                        {{form_end(formCompetence)}}
+                                    {% elseif key + 1 == 34 %}
+                                    {{form_start(formStagiaire)}}
+                                            {{form_widget(formStagiaire)}}
+                                            <button>valider</button>
+                                        {{form_end(formStagiaire)}}
+                                {% else %}
+                                    <form method="POST" id="{{question.id}}">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Réponse</label>
+                                            <textarea type="text" name="reponse-{{question.id}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter votre reponse"></textarea>
+                                            <small id="emailHelp" class="form-text text-muted">Réponse a la question {{key + 1}}</small>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    <form>
+                                {% endif %}
                             {% else %}
                                 {% for response in question.myResponses %}
                                 <p> 

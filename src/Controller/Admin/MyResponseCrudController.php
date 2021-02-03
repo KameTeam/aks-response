@@ -31,7 +31,6 @@ class MyResponseCrudController extends AbstractCrudController
         }
         return [
             TextField::new('text'),
-            BooleanField::new('valide'),
             ChoiceField::new('question')->setChoices($tableau)->hideOnIndex()
         ];
     }
